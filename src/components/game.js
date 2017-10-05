@@ -8,36 +8,62 @@ import GuessList from './guess-list';
 export default class Game extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            theRandomNumber: (Math.floor(Math.random * 100)+1),
+            theRandomNumber: (Math.floor(Math.random() * 100)+1),
             currGuess: null,
-            guesses: []
+            guesses: [],
+            feedback: "Make your guess!"
         }
     }
 
     handleGuess(guess) {
+        let difference = Math.floor(Math.abs(this.state.theRandomNumber - parseInt(guess,10)) / 10);
+        let feedback = '';
+         const descArr=["Red Hot!", "Super hot", "Scorching", "Really warm", "Warm", "Lukewarm", "Coolish", "Cold", "Frigid", "Ice Cold", "Absolute Zero"]
+         if (guess == this.state.theRandomNumber){
+             
+                 feedback= "You win!!"
+             
+         } else {
+             
+                 feedback= descArr[difference]
+             }
+         
         this.setState(
-            {currGuess: guess}
+            {currGuess: guess,
+             guesses: [...this.state.guesses, guess],
+             feedback: feedback
+            }
         )
-        this.setState(
-            {guesses: [...this.state.guesses, guess]}
-        )
+
     }
+    
+    handleFeedback(){
+        console.log("Handles feedback");
+        
+        
+
+        
+    }
+
+    
 
     handleNewGame() {
         this.setState( {
             currGuess: null,
             guesses: [],
-            theRandomNumber: Math.floor(Math.random * 100)+1
+            theRandomNumber: Math.floor(Math.random() * 100)+1
             }
         )
     }
 
     render() {
+        const newFeedBack = this.handleFeedback();
         return (
             <div>
                 <Header newGame={() => this.handleNewGame()} />
-                <GuessSection feedback="Make your guess!" onNewGuess={ guess => this.handleGuess(guess)} />
+                <GuessSection feedback={this.state.feedback} onNewGuess={ guess => this.handleGuess(guess)} />
                 <GuessCount count={this.state.guesses.length} />
                 <GuessList guesses={this.state.guesses} />
             </div>

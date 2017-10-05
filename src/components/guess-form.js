@@ -8,7 +8,7 @@ export default function GuessForm(props) {
         <form onSubmit={e => {
                 e.preventDefault();
                 props.onSubmitGuess();
-                this.input.value = '';
+                
              }            
         }>
             <input type="text" name="userGuess" id="userGuess" 

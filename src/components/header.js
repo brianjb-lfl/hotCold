@@ -9,7 +9,7 @@ export default function Header(props) {
     return (
         <header>
             <TopNav onNewClick={ () => {
-              this.props.newGame();  
+              props.newGame();  
             }}/>
             {/* <InfoModal /> */}
             <h1>HOT or COLD</h1>
