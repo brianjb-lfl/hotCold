@@ -9,18 +9,28 @@ export default class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            theNumber: null,
             currGuess: null,
             guesses: []
         }
+    }
+
+    handleGuess(guess) {
+        this.setState(
+            {currGuess: guess}
+        )
+        this.setState(
+            {guesses: [...this.state.guesses, guess]}
+        )
     }
 
     render() {
         return (
             <div>
                 <Header />
-                <GuessSection feedback="Make your guess!" />
-                <GuessCount count={3} />
-                <GuessList guesses={[10, 15, 25]} />
+                <GuessSection feedback="Make your guess!" onNewGuess={ guess => this.handleGuess(guess)} />
+                <GuessCount count={this.state.guesses.length} />
+                <GuessList guesses={this.state.guesses} />
             </div>
         );
     }
@@ -34,6 +44,27 @@ state:
     guesses: [#, #, #],
 
     note: use guesses.length for current guess counter
+
+
+
+
+empty box
+
+typing
+
+    onChange - callback in props is called passing value back to state
+
+
+
+user clicks guess
+
+    guess-form = guess-section = game.js
+
+    props.callback    *              
+                    props.callback   *
+
+
+
 
 
 */
