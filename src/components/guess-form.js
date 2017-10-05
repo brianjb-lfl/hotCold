@@ -12,8 +12,8 @@ export default function GuessForm(props) {
              }            
         }>
             <input type="text" name="userGuess" id="userGuess" 
-                //ref={input => this.textInput = input}
-                //value={props.value}
+                //ref='inputBox'
+                value={props.value}
                 onChange={e => props.onChange(e.target.value)}
                 className="text" 
                 maxLength="3"

@@ -14,6 +14,7 @@ export default class Game extends React.Component {
             currGuess: null,
             guesses: [],
             feedback: "Make your guess!"
+            
         }
     }
 
@@ -38,28 +39,20 @@ export default class Game extends React.Component {
         )
 
     }
-    
-    handleFeedback(){
-        console.log("Handles feedback");
-        
-        
-
-        
-    }
-
-    
 
     handleNewGame() {
         this.setState( {
             currGuess: null,
             guesses: [],
-            theRandomNumber: Math.floor(Math.random() * 100)+1
+            theRandomNumber: Math.floor(Math.random() * 100)+1,
+            feedback: "Make your guess!"
+            
             }
         )
     }
 
     render() {
-        const newFeedBack = this.handleFeedback();
+        
         return (
             <div>
                 <Header newGame={() => this.handleNewGame()} />
